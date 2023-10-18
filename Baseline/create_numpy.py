@@ -32,7 +32,7 @@ def text_preprocessing(text):
 
 path = ""
 
-csv = pd.read_csv("/speech/sreyan/aaai/Train.csv")
+csv = pd.read_csv("./Train.csv")
 
 tokenizer = AutoTokenizer.from_pretrained("roberta-base")
 model = RobertaModel.from_pretrained("roberta-base").cuda()
@@ -48,7 +48,7 @@ for i, row in tqdm(csv.iterrows()):
 
     output = output.cpu().detach().numpy()
 
-    np.save("/speech/sreyan/aaai/baseline/" + str(row["FileName"]), output)
+    np.save("./baseline/" + str(row["FileName"]), output)
 
     
 

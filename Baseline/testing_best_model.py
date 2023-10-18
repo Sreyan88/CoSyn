@@ -1,6 +1,6 @@
 #run from baseline directory
 CUDA_LAUNCH_BLOCKING=1.
-path = '/fs/nexus-scratch/sonalkum/baseline/Test_muril_test_reddit_model.pt'
+path = '.pt' # path to best model ckpt file
 import torch
 from transformers import AutoTokenizer,get_linear_schedule_with_warmup
 import numpy as np
@@ -33,10 +33,6 @@ model = TransformerModel("./baseline/bert-multi-conversational-hate-sentence-tra
 model.load_state_dict(torch.load(path,map_location='cuda'))
 model = model.cuda()
 def read_data(train_data, valid_data, test_data):
-    # train_data = pd.read_csv(train_data)
-    # test_data = pd.read_csv(test_data)
-    # train_data.dropna(axis='columns', inplace=True)
-    # test_data.dropna(axis='columns',inplace = True)
     train_data.tweet = train_data.tweet.apply(text_preprocessing)
     valid_data.tweet = valid_data.tweet.apply(text_preprocessing)
     test_data.tweet = test_data.tweet.apply(text_preprocessing)
@@ -71,18 +67,8 @@ def get_embedding(text):
   pooled_ = torch.mean(pooled_output,0)
 
   return pooled_
-df = pd.read_csv("./baseline/reddit/test.csv")
-df2 = pd.read_csv("./baseline/reddit/train.csv")
-# def read_data(test_data):
-#     # train_data = pd.read_csv(train_data)
-#     # test_data = pd.read_csv(test_data)
-#     # train_data.dropna(axis='columns', inplace=True)
-#     # test_data.dropna(axis='columns',inplace = True)
-#     test_data.tweet = test_data.tweet.apply(text_preprocessing)
-#     test_data.label = test_data.label.apply(binarise)
-#     test_data = test_data[['tweet','label']]
-#     return test_data
-
+df = pd.read_csv("./test.csv")
+df2 = pd.read_csv("./train.csv")
 _,_,test_data = read_data(df2,df2,df)
 '''# if intrinsic is detected 
 for i in range(len(df)):

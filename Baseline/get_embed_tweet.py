@@ -1,7 +1,7 @@
 
 from tqdm import tqdm 
 #run from baseline directory
-path = '/fs/nexus-scratch/sonalkum/baseline/Test_muril_test_cad_model.pt'
+path = '.pt' # path to the ckpt file
 import torch
 from transformers import AutoTokenizer,get_linear_schedule_with_warmup
 import numpy as np

@@ -72,15 +72,6 @@ def get_embedding(text):
   return pooled_
 df = pd.read_csv("./Test.csv")
 df2 = pd.read_csv("./Train.csv")
-# def read_data(test_data):
-#     # train_data = pd.read_csv(train_data)
-#     # test_data = pd.read_csv(test_data)
-#     # train_data.dropna(axis='columns', inplace=True)
-#     # test_data.dropna(axis='columns',inplace = True)
-#     test_data.tweet = test_data.tweet.apply(text_preprocessing)
-#     test_data.label = test_data.label.apply(binarise)
-#     test_data = test_data[['tweet','label']]
-#     return test_data
 df["label"]=0
 for i in range(len(df)):
     if df["annotation"][i] == "I":
